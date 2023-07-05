@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Client;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ClientController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Client::all();
+        return Supplier::all();
     }
 
     /**
@@ -22,43 +23,39 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required'
         ]);
 
-        return Client::created($request->all());
+        return Supplier::created($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show(Supplier $supplier)
     {
-        return $client;
+        return $supplier;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Supplier $supplier)
     {
         $request->validate([
             'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required'
         ]);
 
-        $client->update($request->all());
+        $supplier->update($request->all());
 
-        return $client;
+        return $supplier;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Supplier $supplier)
     {
-        $client->delete();
+        $supplier->delete();
 
         return response()->json(['mensaje' => 'Eliminado :)']);
     }
